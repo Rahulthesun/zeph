@@ -5,7 +5,15 @@ import dynamic from "next/dynamic";
 import Navbar from "./components/navbar";
 import HackathonHero from "./components/Hero";
 import HackathonTracks from "./components/Tracks";
+<<<<<<< HEAD
 import Counter from "./components/counter";
+=======
+import Timeline from "./components/Timeline";
+import HackathonCountdown from "./components/counter";
+import PartnerInstitutions from "./components/partner";
+import LocationDetails from "./components/location";
+import Footer from "./components/footer";
+>>>>>>> a18dbaa6dbb266d3f84defc4483f7253cd354861
 
 // IMPORTANT: client-only Galaxy
 const Galaxy = dynamic(() => import("./components/galaxy"), {
@@ -129,7 +137,23 @@ export default function Home() {
       
 
       <HackathonTracks/>
+<<<<<<< HEAD
       <Counter />
+=======
+
+      <Timeline/>
+
+      <HackathonCountdown/>
+      
+      <LocationDetails/>
+
+      <PartnerInstitutions/>
+
+      <Footer/>
+
+      
+    
+>>>>>>> a18dbaa6dbb266d3f84defc4483f7253cd354861
     </main>
   );
 }
