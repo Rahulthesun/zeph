@@ -1,3 +1,5 @@
+import Sponsors from "./partner";
+
 export default function HackathonHero() {
   return (
     <section className="relative min-h-screen flex items-center bg-black overflow-hidden" id="about">
@@ -52,6 +54,9 @@ export default function HackathonHero() {
                 className="w-40 opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
+
+                    <Sponsors/>
+
           </div>
 
           {/* Right: Text and Highlights */}

@@ -44,7 +44,7 @@ export default function Navbar() {
       `}</style>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "py-2" : "py-3 sm:py-4"
+          isScrolled ? "py-2 pt-6" : "py-3 sm:py-4"
         }`}
       >
         <div className="flex justify-center items-center px-3 sm:px-6 lg:px-8 w-full mx-auto relative">
@@ -52,17 +52,15 @@ export default function Navbar() {
           <Link href="/" className="group flex items-center gap-2 sm:gap-3 z-50 absolute left-3 sm:left-6 lg:left-8">
             <div className="relative">
               <div className="absolute -inset-1 rounded-full bg-white/40 blur-md group-hover:opacity-70 transition-opacity" />
-              <div className="relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-br from-gray-900 to-black ring-1 ring-white/20">
+              <div className="relative flex w-20 h-20 items-center justify-center rounded-full bg-gradient-to-br from-gray-900 to-black ring-1 ring-white/20">
                 <img
-                  src="assets/logo.png"
+                  src="assets/logo.jpeg"
                   alt="Zeph Logo"
                   className="w-full h-full rounded-full p-1 bg-gradient-to-br from-black to-gray-900"
                 />
               </div>
             </div>
-            <span className="font-bold tracking-tight text-white text-base sm:text-lg">
-              Zeph
-            </span>
+            
           </Link>
 
           {/* Center Navbar Container */}

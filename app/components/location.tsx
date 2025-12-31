@@ -26,13 +26,11 @@ export default function LocationDetails() {
     className="absolute inset-0"
     style={{
       backgroundImage:
-        "url('https://images.unsplash.com/photo-1514454529242-9e4677563e7b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2t5JTIwd2FsbHBhcGVyfGVufDB8fDB8fHww')",
+        "url('assets/sea.png')",
       backgroundSize: "cover",
       backgroundPosition: "center",
-      filter: "brightness(0.85) contrast(1.05) saturate(1.1)",
     }}
   />
-  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 </div>
 
 

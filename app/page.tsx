@@ -5,15 +5,12 @@ import dynamic from "next/dynamic";
 import Navbar from "./components/navbar";
 import HackathonHero from "./components/Hero";
 import HackathonTracks from "./components/Tracks";
-<<<<<<< HEAD
 import Counter from "./components/counter";
-=======
 import Timeline from "./components/Timeline";
 import HackathonCountdown from "./components/counter";
 import PartnerInstitutions from "./components/partner";
 import LocationDetails from "./components/location";
 import Footer from "./components/footer";
->>>>>>> a18dbaa6dbb266d3f84defc4483f7253cd354861
 
 // IMPORTANT: client-only Galaxy
 const Galaxy = dynamic(() => import("./components/galaxy"), {
@@ -60,9 +57,7 @@ export default function Home() {
     <main className="w-full bg-black text-white">
       <section className="relative h-screen overflow-hidden">
         {/* 🌌 Galaxy background */}
-        <div className="absolute inset-0 z-0">
-          <Galaxy />
-        </div>
+        
 
         {/* 🌕 Moon */}
         <div
@@ -90,14 +85,14 @@ export default function Home() {
               style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '-0.02em' }}
               aria-hidden="true"
             >
-              ZEPH
+              ZEPH '26
             </h1>
             <h1 
               className="absolute inset-0 text-[12rem] font-black blur-xl opacity-60"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '-0.02em' }}
+              style={{ fontFamily: "'Teko', sans-serif", letterSpacing: '-0.02em' }}
               aria-hidden="true"
             >
-              ZEPH
+              ZEPH '26
             </h1>
             
             {/* Main text */}
@@ -111,7 +106,7 @@ export default function Home() {
                 filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))',
               }}
             >
-              ZEPH
+              ZEPH '26
             </h1>
           </div>
           
@@ -137,23 +132,21 @@ export default function Home() {
       
 
       <HackathonTracks/>
-<<<<<<< HEAD
-      <Counter />
-=======
 
       <Timeline/>
+       
 
       <HackathonCountdown/>
       
       <LocationDetails/>
 
-      <PartnerInstitutions/>
+     
+
 
       <Footer/>
 
       
     
->>>>>>> a18dbaa6dbb266d3f84defc4483f7253cd354861
     </main>
   );
 }
