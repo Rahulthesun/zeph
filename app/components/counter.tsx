@@ -42,7 +42,7 @@ const Counter = () => {
 
       {/* BACKGROUND IMAGE */}
       <img
-  src={'../assets/land_sea.png'}
+  src={'../assets/water.jpg'}
   alt="Underwater World"
   className="
     absolute inset-0 w-full h-full object-cover
