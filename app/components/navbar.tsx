@@ -90,7 +90,7 @@ export default function Navbar() {
                     { url: "/", label: "Roadmap" },
                     { url: "/#about", label: "About" },
                     { url: "/#venue", label: "Venue" },
-                    { url: "/contact", label: "Contact" },
+                    { url: "/#footer", label: "Contact" },
                   ].map((item) => (
                     <a
                       key={item.url}

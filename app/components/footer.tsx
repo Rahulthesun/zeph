@@ -17,7 +17,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-transparent">
+    <footer className="relative overflow-hidden bg-transparent" id="footer">
       {/* Background Image - Replace with your image URL */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
