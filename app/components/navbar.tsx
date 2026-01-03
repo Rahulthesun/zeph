@@ -121,6 +121,7 @@ export default function Navbar() {
                 <button
                   className="lg:hidden p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  aria-label="Toggle mobile menu"
                 >
                   <svg
                     className="w-5 h-5"
