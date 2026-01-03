@@ -56,16 +56,13 @@ export default function Home() {
 
   // 🌕 Moon parallax
   const moonTranslateY =
-    windowHeight > 0
-      ? Math.max(-50, 50 - (scrollY / windowHeight) * 100)
-      : 50;
+    windowHeight > 0 ? Math.max(-50, 50 - (scrollY / windowHeight) * 100) : 50;
 
   const titleOpacity = Math.max(0, 1 - scrollY / (windowHeight * 0.5));
   const titleTranslateY = scrollY * 0.3;
 
   return (
     <main className="w-full bg-black text-white overflow-x-hidden">
-
       {/* ===================== SPACE ===================== */}
       <section className="relative h-screen overflow-hidden bg-black">
         {/* Galaxy reserved */}
@@ -90,36 +87,38 @@ export default function Home() {
             transform: `translateY(${titleTranslateY}px)`,
           }}
         >
-          <div className="relative">
+          <div className="relative leading-none">
             <h1
-              className="absolute inset-0 text-[12rem] font-black blur-3xl opacity-40"
+              className="absolute inset-0 text-[12rem] font-black blur-3xl opacity-40 leading-none"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               aria-hidden
             >
-              ZYPH  '26
+              ZYPH '26
             </h1>
 
             <h1
-              className="relative text-[12rem] font-black bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/80"
+              className="relative text-[12rem] font-black bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/80 leading-none"
               style={{
                 fontFamily: "'Bebas Neue', sans-serif",
                 filter:
                   "drop-shadow(0 4px 8px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(255,255,255,0.3))",
               }}
             >
-              ZYPH  '26
+              ZYPH '26
             </h1>
           </div>
 
+          <p
+            className="text-5xl md:text-6xl font-black text-white/90 tracking-tight -mt-8"
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.8))",
+            }}
+          >
+            TEXUS GLOBAL SUMMIT - PHASE 1
+          </p>
+
           {/* Scroll indicator */}
-          <div className="absolute bottom-12 flex flex-col items-center gap-3">
-            <span className="text-xs tracking-widest text-white/40">
-              SCROLL
-            </span>
-            <div className="h-12 w-6 rounded-full border border-white/20 p-1">
-              <div className="h-2 w-2 mx-auto rounded-full bg-white/40 animate-bounce" />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -138,7 +137,6 @@ export default function Home() {
         <LocationDetails />
         <Footer />
       </section>
-
     </main>
   );
 }

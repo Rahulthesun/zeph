@@ -2,13 +2,30 @@ import React, { useState, useEffect } from "react";
 import { MapPin, Calendar, Users, Navigation } from "lucide-react";
 
 const images = [
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80",
-  "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=80",
-  "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=80",
+  "/assets/hack1.jpg",
+  "/assets/hack2.jpg",
+  "/assets/hack3.jpg",
+  "/assets/hack4.jpg",
+  "/assets/hack5.jpg",
+  "/assets/hack6.jpg",
+  "/assets/hack7.jpg",
+  "/assets/hack8.jpeg",
 ];
 
 export default function LocationDetails() {
   const [currentImage, setCurrentImage] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+
+  // Preload images
+  useEffect(() => {
+    images.forEach((src, index) => {
+      const img = new Image();
+      img.onload = () => {
+        setLoadedImages((prev) => new Set(prev).add(index));
+      };
+      img.src = src;
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(
@@ -19,13 +36,16 @@ export default function LocationDetails() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-transparent py-32 overflow-hidden" id="venue">
+    <section
+      className="relative min-h-screen bg-transparent py-32 overflow-hidden"
+      id="venue"
+    >
       {/* Location Background */}
-<div className="absolute inset-0 pointer-events-none">
-  <div
-    className="absolute inset-0"
-    style={{
-      backgroundImage: `
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
         linear-gradient(
           to bottom,
           rgba(0,0,0,1) 0%,
@@ -37,25 +57,26 @@ export default function LocationDetails() {
         ),
         url('assets/sea.png')
       `,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  />
-</div>
-
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-6">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span className="text-xs text-white/60 font-semibold tracking-widest uppercase">Venue</span>
+            <span className="text-xs text-white/60 font-semibold tracking-widest uppercase">
+              Venue
+            </span>
           </div>
-          
+
           <h2 className="text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
             Location & Event Details
           </h2>
-          
+
           <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
             Where innovation meets infrastructure at SRM Institute
           </p>
@@ -87,9 +108,7 @@ export default function LocationDetails() {
                 <div
                   key={index}
                   className={`h-1 rounded-full transition-all duration-500 ${
-                    index === currentImage
-                      ? "w-8 bg-white"
-                      : "w-1 bg-white/30"
+                    index === currentImage ? "w-8 bg-white" : "w-1 bg-white/30"
                   }`}
                 />
               ))}
@@ -106,7 +125,7 @@ export default function LocationDetails() {
             {/* Main Venue Card */}
             <div className="relative group">
               <div className="absolute -inset-1 bg-white/5 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
               <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-white/20 transition-all duration-500">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10">
@@ -114,10 +133,10 @@ export default function LocationDetails() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-1">
-                      SRM Institute
+                      Merlis Hotel
                     </h3>
                     <p className="text-sm text-white/50">
-                      Chennai, Ramapuram Campus
+                      Coimbatore, Tamil Nadu
                     </p>
                   </div>
                 </div>
@@ -128,7 +147,7 @@ export default function LocationDetails() {
                     <Calendar className="w-5 h-5 text-white/40" />
                     <span className="text-sm">February 14-15, 2025</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 text-white/60">
                     <Users className="w-5 h-5 text-white/40" />
                     <span className="text-sm">500+ Innovators Expected</span>
@@ -136,39 +155,19 @@ export default function LocationDetails() {
                 </div>
 
                 {/* Map Button */}
-                <button className="mt-6 w-full flex items-center justify-center gap-3 px-6 py-4 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105">
+                <a
+                  href="https://maps.app.goo.gl/rtmhmJX7ZNiSzw6N8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 w-full flex items-center justify-center gap-3 px-6 py-4 bg-white text-black font-bold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105"
+                >
                   <Navigation className="w-5 h-5" />
                   <span>Get Directions</span>
-                </button>
+                </a>
               </div>
             </div>
 
-            {/* Quick Info Card */}
-            <div className="relative bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-6 hover:border-white/20 transition-all duration-300">
-              <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                <div className="w-1 h-1 bg-white rounded-full" />
-                What's Included
-              </h4>
-              
-              <div className="space-y-3 text-sm text-white/50">
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                  <span>High-speed WiFi & power outlets</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                  <span>Meals & refreshments provided</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                  <span>24/7 mentorship & support</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-                  <span>Networking opportunities</span>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
 
@@ -195,7 +194,6 @@ export default function LocationDetails() {
           ))}
         </div>
         */}
-       
       </div>
     </section>
   );

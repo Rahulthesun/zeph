@@ -84,7 +84,7 @@ export default function HackathonHero() {
             {/* Highlights Grid */}
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2 border-l border-white/20 pl-4 backdrop-blur-sm bg-white/5 p-3 rounded-r">
-                <div className="text-3xl font-bold text-white">24hrs</div>
+                <div className="text-3xl font-bold text-white">12 Hours</div>
                 <div className="text-sm text-white/50">Non-stop Innovation</div>
               </div>
 
