@@ -20,7 +20,7 @@ export default function LocationDetails() {
 
   return (
     <section className="relative min-h-screen bg-transparent py-32 overflow-hidden" id="venue">
-      {/* Location Background */}
+     {/* Location Background – FADE IN TOP + FADE OUT BOTTOM + DIM */}
 <div className="absolute inset-0 pointer-events-none">
   <div
     className="absolute inset-0"
@@ -28,20 +28,37 @@ export default function LocationDetails() {
       backgroundImage: `
         linear-gradient(
           to bottom,
+          /* Fade-in at top */
           rgba(0,0,0,1) 0%,
-          rgba(0,0,0,0.6) 15%,
-          rgba(0,0,0,0) 30%,
-          rgba(0,0,0,0) 70%,
-          rgba(0,0,0,0.6) 85%,
+          rgba(0,0,0,0.85) 8%,
+          rgba(0,0,0,0.6) 16%,
+          rgba(0,0,0,0.3) 24%,
+          rgba(0,0,0,0.1) 32%,
+          rgba(0,0,0,0) 40%,
+
+          /* Clear middle */
+          rgba(0,0,0,0) 60%,
+
+          /* Fade-out at bottom */
+          rgba(0,0,0,0.1) 68%,
+          rgba(0,0,0,0.3) 76%,
+          rgba(0,0,0,0.6) 84%,
+          rgba(0,0,0,0.85) 92%,
           rgba(0,0,0,1) 100%
         ),
-        url('assets/sea.png')
+        linear-gradient(
+          rgba(0,0,0,0.35),
+          rgba(0,0,0,0.35)
+        ),
+        url('assets/Gemini_Generated_Image_y9d43ky9d43ky9d4.png')
       `,
       backgroundSize: "cover",
       backgroundPosition: "center",
     }}
   />
 </div>
+
+
 
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">

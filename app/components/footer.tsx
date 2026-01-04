@@ -19,26 +19,28 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-transparent" id="footer">
       
-      {/* Background – FADE IN AT TOP */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              to bottom,
-              rgba(0,0,0,1) 0%,
-              rgba(0,0,0,0.7) 18%,
-              rgba(0,0,0,0.35) 35%,
-              rgba(0,0,0,0.15) 55%,
-              rgba(0,0,0,0) 100%
-            ),
-            url('https://wallpapershome.com/images/pages/pic_h/18612.jpg')
-          `,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.9,
-        }}
-      />
+      {/* Background – STRONGER FADE IN AT TOP */}
+<div
+  className="absolute inset-0"
+  style={{
+    backgroundImage: `
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,0.85) 15%,
+        rgba(0,0,0,0.65) 30%,
+        rgba(0,0,0,0.4) 45%,
+        rgba(0,0,0,0.2) 60%,
+        rgba(0,0,0,0.08) 75%,
+        rgba(0,0,0,0) 100%
+      ),
+      url('https://wallpapershome.com/images/pages/pic_h/18612.jpg')
+    `,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    opacity: 0.95,
+  }}
+/>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">

@@ -41,34 +41,45 @@ const Counter = () => {
     <div className="relative h-screen w-full overflow-hidden">
 
       {/* Counter Background */}
-<div className="absolute inset-0">
+<div className="absolute inset-0 overflow-hidden">
+  
+  {/* Background Image */}
+  <img
+    src="../assets/Gemini_Generated_Image_atawfxatawfxataw.png"
+    alt="Underwater World"
+    className="absolute inset-0 w-full h-full object-cover
+               contrast-110 saturate-110"
+  />
+
+  {/* Gradient Overlay (ABOVE image) */}
   <div
-    className="absolute inset-0 z-10"
+    className="absolute inset-0 z-10 pointer-events-none"
     style={{
       backgroundImage: `
         linear-gradient(
           to bottom,
+          /* STRONG fade-in (top) */
           rgba(0,0,0,1) 0%,
-          rgba(0,0,0,0.6) 15%,
-          rgba(0,0,0,0) 30%,
-          rgba(0,0,0,0) 70%,
-          rgba(0,0,0,0.6) 85%,
+          rgba(0,0,0,0.9) 10%,
+          rgba(0,0,0,0.65) 22%,
+          rgba(0,0,0,0.35) 34%,
+          rgba(0,0,0,0.15) 44%,
+          rgba(0,0,0,0) 55%,
+
+          /* clear middle */
+          rgba(0,0,0,0) 65%,
+
+          /* fade-out bottom */
+          rgba(0,0,0,0.15) 75%,
+          rgba(0,0,0,0.35) 85%,
+          rgba(0,0,0,0.65) 92%,
           rgba(0,0,0,1) 100%
         )
       `,
     }}
   />
-
-  <img
-    src="../assets/Gemini_Generated_Image_atawfxatawfxataw.png"
-    alt="Underwater World"
-    className="
-      absolute inset-0 w-full h-full object-cover
-      contrast-110 saturate-110
-      will-change-transform
-    "
-  />
 </div>
+
 
 
       {/* OVERLAY */}

@@ -75,19 +75,30 @@ export default function HackathonTimeline() {
     backgroundImage: `
       linear-gradient(
         to bottom,
+        /* fade-in top */
         rgba(0,0,0,1) 0%,
-        rgba(0,0,0,0.6) 15%,
-        rgba(0,0,0,0) 30%,
-        rgba(0,0,0,0) 75%,
-        rgba(0,0,0,0.4) 90%,
-        rgba(0,0,0,0.85) 100%
+        rgba(0,0,0,0.65) 18%,
+        rgba(0,0,0,0.35) 30%,
+        rgba(0,0,0,0.15) 42%,
+        rgba(0,0,0,0) 55%,
+
+        /* clear middle */
+        rgba(0,0,0,0) 65%,
+
+        /* fade-out bottom — MATCHES counter */
+        rgba(0,0,0,0.15) 75%,
+        rgba(0,0,0,0.35) 85%,
+        rgba(0,0,0,0.65) 92%,
+        rgba(0,0,0,1) 100%
       ),
-      url('assets/space_sequence_3.jpg')
+      url('assets/Gemini_Generated_Image_xpiu6cxpiu6cxpiu.png')
     `,
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}
 />
+
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
