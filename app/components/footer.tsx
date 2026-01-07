@@ -19,97 +19,105 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-transparent" id="footer">
       
-      {/* Background – STRONGER FADE IN AT TOP */}
-<div
-  className="absolute inset-0"
-  style={{
-    backgroundImage: `
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,0.85) 15%,
-        rgba(0,0,0,0.65) 30%,
-        rgba(0,0,0,0.4) 45%,
-        rgba(0,0,0,0.2) 60%,
-        rgba(0,0,0,0.08) 75%,
-        rgba(0,0,0,0) 100%
-      ),
-      url('https://wallpapershome.com/images/pages/pic_h/18612.jpg')
-    `,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    opacity: 0.95,
-  }}
-/>
+      {/* DESKTOP / TABLET BACKGROUND */}
+      <div className="absolute inset-0 hidden sm:block">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(
+                to bottom,
+                rgba(0,0,0,1) 0%,
+                rgba(0,0,0,0.85) 18%,
+                rgba(0,0,0,0.6) 35%,
+                rgba(0,0,0,0.35) 50%,
+                rgba(0,0,0,0.15) 65%,
+                rgba(0,0,0,0) 100%
+              ),
+              url('https://wallpapershome.com/images/pages/pic_h/18612.jpg')
+            `,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+      {/* MOBILE BACKGROUND – MOVED UP */}
+      <div className="absolute inset-0 sm:hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.9) 0%,
+                rgba(0,0,0,0.7) 20%,
+                rgba(0,0,0,0.45) 38%,
+                rgba(0,0,0,0.2) 52%,
+                rgba(0,0,0,0) 65%,
+                rgba(0,0,0,0.5) 82%,
+                rgba(0,0,0,0.85) 92%,
+                rgba(0,0,0,1) 100%
+              ),
+              url('assets/footmob.jpg')
+            `,
+            backgroundSize: "cover",
+            backgroundPosition: "right 15%", // ✅ MOVED UP
+          }}
+        />
+      </div>
+
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
         
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 mb-12 sm:mb-16">
           
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <div className="relative">
-              
-              {/* Glow Layers */}
-              <h1
-                className="absolute inset-0 text-[6rem] font-black blur-3xl opacity-40"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                aria-hidden
-              >
-                ZYPH ’26
-              </h1>
-              <h1
-                className="absolute inset-0 text-[6rem] font-black blur-xl opacity-60"
-                style={{ fontFamily: "'Teko', sans-serif" }}
-                aria-hidden
-              >
-                ZYPH ’26
-              </h1>
+          {/* BRAND */}
+          <div className="space-y-5">
+<h1
+  className="
+    text-4xl
+    sm:text-[5.5rem]
+    lg:text-[3rem]
+    font-black
+    text-white
+    drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]
+    drop-shadow-[0_0_28px_rgba(255,255,255,0.35)]
+  "
+>
+  ZYPH ’26
+</h1>
 
-              {/* Main Text */}
-              <h1
-                className="relative text-[6rem] font-black bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/90"
-                style={{
-                  fontFamily: "'Bebas Neue', sans-serif",
-                  filter:
-                    "drop-shadow(0 4px 8px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(255,255,255,0.3))",
-                }}
-              >
-                ZYPH ’26
-              </h1>
-            </div>
 
-            <p className="text-base text-white/50 leading-relaxed">
-              Code for the planet. Build solutions that address the UN's 17
+            <p className="text-sm sm:text-base text-white/50 max-w-md">
+              Code for the planet. Build solutions aligned with the UN’s 17
               Sustainable Development Goals.
             </p>
 
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-2.5 h-2.5 bg-white rounded-full" />
-                <div className="absolute inset-0 w-2.5 h-2.5 bg-white rounded-full animate-ping opacity-40" />
+                <div className="w-2 h-2 bg-white rounded-full" />
+                <div className="absolute inset-0 w-2 h-2 bg-white rounded-full animate-ping opacity-40" />
               </div>
-              <span className="text-sm text-white/70 font-semibold uppercase tracking-wider">
+              <span className="text-xs sm:text-sm text-white/70 font-semibold uppercase tracking-wider">
                 Registration Open
               </span>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* QUICK LINKS */}
           <div>
-            <h3 className="text-sm font-bold text-white/60 uppercase tracking-widest mb-6">
+            <h3 className="text-xs sm:text-sm font-bold text-white/60 uppercase tracking-widest mb-4 sm:mb-6">
               Quick Links
             </h3>
-            <ul className="space-y-4">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
+            <ul className="space-y-3 sm:space-y-4">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-base text-white/70 hover:text-white transition-colors flex items-center gap-2 group"
+                    className="text-sm sm:text-base text-white/70 hover:text-white flex items-center gap-2"
                   >
-                    <span className="w-1 h-1 bg-white/40 rounded-full group-hover:bg-white" />
+                    <span className="w-1 h-1 bg-white/40 rounded-full" />
                     {link.name}
                   </a>
                 </li>
@@ -117,73 +125,42 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* CONNECT */}
           <div>
-            <h3 className="text-sm font-bold text-white/60 uppercase tracking-widest mb-6">
+            <h3 className="text-xs sm:text-sm font-bold text-white/60 uppercase tracking-widest mb-4 sm:mb-6">
               Connect
             </h3>
 
-            <div className="flex gap-3 mb-8">
-              {socialLinks.map((social, index) => {
+            <div className="flex gap-3 mb-6 sm:mb-8">
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
                   <a
-                    key={index}
+                    key={social.label}
                     href={social.href}
-                    aria-label={social.label}
-                    className="w-12 h-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all"
+                    className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10"
                   >
-                    <Icon className="w-5 h-5 text-white/60 hover:text-white" />
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white/60 hover:text-white" />
                   </a>
                 );
               })}
             </div>
 
-            <div className="space-y-2">
-              <p className="text-sm text-white/50">Get in touch</p>
-              <a
-                href="mailto:hello@zyph.srm.edu"
-                className="text-base text-white/70 hover:text-white flex items-center gap-2"
-              >
-                <Mail className="w-4 h-4" />
-                hello@zyph.srm.edu
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm text-white/50">
-            © 2025 ZYPH Hackathon. All rights reserved.
-          </div>
-
-          <div className="flex gap-8">
-            <a href="#privacy" className="text-sm text-white/50 hover:text-white">
-              Privacy
-            </a>
-            <a href="#terms" className="text-sm text-white/50 hover:text-white">
-              Terms
-            </a>
             <a
-              href="#conduct"
-              className="text-sm text-white/50 hover:text-white"
+              href="mailto:hello@zyph.srm.edu"
+              className="text-sm sm:text-base text-white/70 hover:text-white flex items-center gap-2"
             >
-              Code of Conduct
+              <Mail className="w-4 h-4" />
+              hello@zyph.srm.edu
             </a>
           </div>
         </div>
 
-        {/* SDG Badge */}
-        <div className="mt-12 flex justify-center">
-          <div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3">
-            <div className="w-1.5 h-1.5 bg-white rounded-full" />
-            <span className="text-sm text-white/60 font-medium">
-              Aligned with UN Sustainable Development Goals
-            </span>
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-8" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-xs sm:text-sm text-white/50">
+            © 2025 ZYPH Hackathon. All rights reserved.
           </div>
         </div>
       </div>

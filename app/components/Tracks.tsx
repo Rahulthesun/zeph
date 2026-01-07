@@ -1,8 +1,10 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 
 export default function HackathonTracks() {
-  const [visibleTracks, setVisibleTracks] = useState([]);
-  const trackRefs = useRef([]);
+  const [visibleTracks, setVisibleTracks] = useState<number[]>([]);
+  const trackRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const tracks = [
     {
@@ -70,7 +72,7 @@ export default function HackathonTracks() {
               setVisibleTracks((prev) =>
                 prev.includes(index) ? prev : [...prev, index]
               );
-            }, index * 150);
+            }, index * 120);
           }
         },
         { threshold: 0.1 }
@@ -80,98 +82,104 @@ export default function HackathonTracks() {
       return observer;
     });
 
-    return () => observers.forEach((observer) => observer.disconnect());
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
-    <section className="relative min-h-screen py-24 overflow-hidden" id="tracks">
-      {/* Tracks Background */}
-<div
-  className="absolute inset-0"
-  style={{
-    backgroundImage: `
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,0.6) 15%,
-        rgba(0,0,0,0) 30%,
-        rgba(0,0,0,0) 70%,
-        rgba(0,0,0,0.6) 85%,
-        rgba(0,0,0,1) 100%
-      ),
-      url('assets/space_sequence_2.jpg')
-    `,
-    backgroundSize: "cover",
-    backgroundPosition: "73% top",
-  }}
-/>
+    <section
+      id="tracks"
+      className="relative min-h-screen py-20 sm:py-24 overflow-hidden"
+    >
+      {/* BACKGROUND (SHIFT MORE RIGHT ON MOBILE) */}
+      <div
+        className="
+          absolute inset-0
+          bg-cover
+          bg-[position:69%_top]
+          sm:bg-[position:75%_top]
+          lg:bg-[position:65%_top]
+        "
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              to bottom,
+              rgba(0,0,0,1) 0%,
+              rgba(0,0,0,0.6) 15%,
+              rgba(0,0,0,0) 30%,
+              rgba(0,0,0,0) 70%,
+              rgba(0,0,0,0.6) 85%,
+              rgba(0,0,0,1) 100%
+            ),
+            url('assets/space_sequence_2.jpg')
+          `,
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row-reverse gap-16 items-center min-h-[80vh]">
-          {/* Right: Grid of SDG images */}
-          <div className="w-full lg:w-1/2 grid grid-cols-3 lg:grid-cols-2 gap-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="flex flex-col lg:flex-row-reverse gap-14 lg:gap-20 items-center min-h-[80vh]">
+          {/* RIGHT – SDG GRID */}
+          <div className="w-full lg:w-1/2 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-2 gap-4 sm:gap-6">
             {tracks.map((track, index) => (
               <div
                 key={index}
                 ref={(el) => {
-                  trackRefs.current[index] = el;
-                }}
+  trackRefs.current[index] = el;
+}}
                 className={`transition-all duration-700 ${
                   visibleTracks.includes(index)
                     ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
+                    : "translate-y-10 opacity-0"
                 }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="relative group">
                   <img
                     src={track.image}
                     alt={track.sdg}
-                    className="w-full aspect-square rounded-2xl border-2 border-white/10 object-cover transform transition-transform duration-300 group-hover:scale-105 group-hover:border-white/30"
+                    className="w-full aspect-square rounded-xl sm:rounded-2xl border border-white/10 object-cover transition-all duration-300 group-hover:scale-105 group-hover:border-white/30"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Left: Text content */}
-          <div className="w-full lg:w-1/2 space-y-12">
-            <div className="space-y-6">
-              <h2 className="text-6xl lg:text-7xl font-black text-white leading-tight">
+          {/* LEFT – TEXT */}
+          <div className="w-full lg:w-1/2 space-y-10 sm:space-y-12">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white">
                 Tracks
               </h2>
-              <p className="text-sm text-white/70 leading-relaxed max-w-xl">
+              <p className="text-sm sm:text-base text-white/70 max-w-xl leading-relaxed">
                 Choose from six SDG-aligned challenges. Build solutions that
                 address real global problems and create lasting impact.
               </p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {tracks.map((track, index) => (
                 <div
                   key={index}
                   className={`transition-all duration-700 ${
                     visibleTracks.includes(index)
                       ? "translate-x-0 opacity-100"
-                      : "-translate-x-12 opacity-0"
+                      : "-translate-x-10 opacity-0"
                   }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="group cursor-pointer">
-                    <div className="inline-block px-3 py-1 text-xs font-bold rounded-full bg-white/5 border border-white/20 text-white/80 mb-2 group-hover:bg-white/10 transition-colors">
+                  <div className="group">
+                    <span className="inline-block px-3 py-1 mb-2 text-xs font-bold rounded-full bg-white/5 border border-white/20 text-white/80 group-hover:bg-white/10">
                       {track.sdg}
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-white/90 transition-colors">
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
                       {track.title}
                     </h3>
-                    <h4 className="text-lg text-white/60 font-medium mb-2">
+                    <h4 className="text-base sm:text-lg text-white/60 mb-2">
                       {track.subtitle}
                     </h4>
-                    <p className="text-white/50 leading-relaxed text-sm">
+                    <p className="text-sm text-white/50 leading-relaxed">
                       {track.description}
                     </p>
                   </div>
+
                   {index < tracks.length - 1 && (
                     <div className="mt-6 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
                   )}

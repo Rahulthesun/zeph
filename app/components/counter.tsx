@@ -38,138 +38,108 @@ const Counter = () => {
   ]
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <section
+      className="
+        relative w-full overflow-hidden
+        h-[75vh] sm:h-screen
+      "
+    >
+      {/* DESKTOP / TABLET BACKGROUND */}
+      <div className="absolute inset-0 hidden sm:block">
+        <img
+          src="../assets/Gemini_Generated_Image_atawfxatawfxataw.png"
+          alt="Underwater World"
+          className="absolute inset-0 w-full h-full object-cover contrast-110 saturate-110"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(
+                to bottom,
+                rgba(0,0,0,1) 0%,
+                rgba(0,0,0,0.9) 10%,
+                rgba(0,0,0,0.65) 22%,
+                rgba(0,0,0,0.35) 34%,
+                rgba(0,0,0,0.15) 44%,
+                rgba(0,0,0,0) 55%,
+                rgba(0,0,0,0) 65%,
+                rgba(0,0,0,0.15) 75%,
+                rgba(0,0,0,0.35) 85%,
+                rgba(0,0,0,0.65) 92%,
+                rgba(0,0,0,1) 100%
+              )
+            `
+          }}
+        />
+      </div>
 
-      {/* Counter Background */}
-<div className="absolute inset-0 overflow-hidden">
-  
-  {/* Background Image */}
-  <img
-    src="../assets/Gemini_Generated_Image_atawfxatawfxataw.png"
-    alt="Underwater World"
-    className="absolute inset-0 w-full h-full object-cover
-               contrast-110 saturate-110"
-  />
-
-  {/* Gradient Overlay (ABOVE image) */}
-  <div
-    className="absolute inset-0 z-10 pointer-events-none"
-    style={{
-      backgroundImage: `
-        linear-gradient(
-          to bottom,
-          /* STRONG fade-in (top) */
-          rgba(0,0,0,1) 0%,
-          rgba(0,0,0,0.9) 10%,
-          rgba(0,0,0,0.65) 22%,
-          rgba(0,0,0,0.35) 34%,
-          rgba(0,0,0,0.15) 44%,
-          rgba(0,0,0,0) 55%,
-
-          /* clear middle */
-          rgba(0,0,0,0) 65%,
-
-          /* fade-out bottom */
-          rgba(0,0,0,0.15) 75%,
-          rgba(0,0,0,0.35) 85%,
-          rgba(0,0,0,0.65) 92%,
-          rgba(0,0,0,1) 100%
-        )
-      `,
-    }}
-  />
-</div>
-
-
-
-      {/* OVERLAY */}
+      {/* MOBILE BACKGROUND */}
+      <div className="absolute inset-0 sm:hidden">
+        <img
+          src="../assets/mobdiff.png"
+          alt="Mobile Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.85) 0%,
+                rgba(0,0,0,0.6) 16%,
+                rgba(0,0,0,0.35) 28%,
+                rgba(0,0,0,0.15) 40%,
+                rgba(0,0,0,0) 52%,
+                rgba(0,0,0,0) 65%,
+                rgba(0,0,0,0.4) 82%,
+                rgba(0,0,0,0.75) 92%,
+                rgba(0,0,0,1) 100%
+              )
+            `
+          }}
+        />
+      </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col items-center justify-end h-full pb-28 text-center">
-
-        <h1 className="text-white text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-          ZYPH  '26 Hackathon
+      <div
+        className="
+          relative z-10 h-full
+          flex flex-col items-center justify-end
+          pb-70 sm:pb-28
+          text-center
+        "
+      >
+        <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-bold mb-2">
+          ZYPH ’26 Hackathon
         </h1>
 
-        <p className="text-cyan-100/90 tracking-widest text-sm mb-10">
+        <p className="text-cyan-100/90 tracking-widest text-[10px] sm:text-sm mb-5 sm:mb-10">
           INNOVATE FOR A SUSTAINABLE FUTURE
         </p>
 
-        {/* TIMER */}
-        {/* <div className="flex gap-6 px-10 py-8 rounded-3xl bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_0_70px_rgba(0,255,255,0.25)] animate-[float_6s_ease-in-out_infinite]">
-          {blocks.map((b, i) => (
-            <div key={i} className="text-center min-w-22.5">
-              <div className="text-5xl md:text-6xl font-mono font-bold
-                text-cyan-200 drop-shadow-[0_0_18px_rgba(0,255,255,0.8)]">
-                {String(b.value).padStart(2, '0')}
-              </div>
-              <div className="mt-2 text-xs tracking-[0.35em] text-cyan-100/80">
-                {b.label}
-              </div>
-            </div>
-          ))}
-        </div> */}
         <div className="
-  relative px-12 py-8
-  bg-black/80 backdrop-blur-md
-  border border-cyan-400/40
-  rounded-xl
-  shadow-[0_0_80px_rgba(0,255,255,0.35)]
-">
-
-  {/* HUD HEADER */}
-  <div className="absolute -top-3 left-1/2 -translate-x-1/2
-    px-4 py-1 bg-black border border-cyan-400/40
-    text-cyan-300 text-[10px] tracking-widest font-mono">
-    MISSION STARTS IN
-  </div>
-
-  {/* TIMER */}
-  <div className="flex gap-8">
-    {blocks.map((b, i) => (
-      <div key={i} className="text-center min-w-[90px]">
-
-        {/* NUMBER */}
-        <div className="
-          text-6xl font-mono font-bold
-          text-cyan-300
-          drop-shadow-[0_0_20px_rgba(0,255,255,0.9)]
-          animate-pulse
+          relative px-4 sm:px-12 py-4 sm:py-8
+          bg-black/80 backdrop-blur-md
+          border border-cyan-400/40
+          rounded-xl
         ">
-          {String(b.value).padStart(2, '0')}
+          <div className="flex gap-3 sm:gap-8">
+            {blocks.map((b, i) => (
+              <div key={i} className="text-center min-w-[56px] sm:min-w-[90px]">
+                <div className="text-3xl sm:text-6xl font-mono font-bold text-cyan-300">
+                  {String(b.value).padStart(2, '0')}
+                </div>
+                <div className="mt-1 text-[9px] sm:text-[10px] tracking-[0.25em] text-cyan-200/80">
+                  {b.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-        {/* LABEL */}
-        <div className="mt-2 text-[10px] tracking-[0.35em] text-cyan-200/80">
-          {b.label}
-        </div>
-
       </div>
-    ))}
-  </div>
-
-  {/* HUD CORNERS */}
-  <span className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-cyan-400/60" />
-  <span className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-cyan-400/60" />
-  <span className="absolute bottom-2 left-2 w-3 h-3 border-l-2 border-b-2 border-cyan-400/60" />
-  <span className="absolute bottom-2 right-2 w-3 h-3 border-r-2 border-b-2 border-cyan-400/60" />
-</div>
-
-
-        <p className="mt-8 text-cyan-100/80 text-sm">
-          {/* 🌊 Building solutions beneath the surface */}
-        </p>
-      </div>
-
-      {/* INLINE KEYFRAMES (APP ROUTER SAFE) */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-12px); }
-        }
-      `}</style>
-
-    </div>
+    </section>
   )
 }
 

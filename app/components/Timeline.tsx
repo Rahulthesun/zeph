@@ -1,3 +1,5 @@
+"use client";
+
 import { Download, ArrowRight } from "lucide-react";
 
 export default function HackathonTimeline() {
@@ -9,13 +11,13 @@ export default function HackathonTimeline() {
       deliverables: [
         "Problem understanding doc",
         "SDG alignment justification",
-        "Proposed solution overview"
+        "Proposed solution overview",
       ],
       evaluation: [
         "Clarity of problem framing",
         "Correct SDG mapping",
-        "Social relevance"
-      ]
+        "Social relevance",
+      ],
     },
     {
       phase: 2,
@@ -24,13 +26,13 @@ export default function HackathonTimeline() {
       deliverables: [
         "Data sources/datasets",
         "System architecture",
-        "Ethical & accessibility considerations"
+        "Ethical & accessibility considerations",
       ],
       evaluation: [
         "Research depth",
         "Realistic assumptions",
-        "Innovation quality"
-      ]
+        "Innovation quality",
+      ],
     },
     {
       phase: 3,
@@ -39,13 +41,13 @@ export default function HackathonTimeline() {
       deliverables: [
         "Working prototype/simulation",
         "Impact metrics definition",
-        "Deployment & scalability plan"
+        "Deployment & scalability plan",
       ],
       evaluation: [
         "Technical credibility",
         "SDG impact measurement",
-        "Execution readiness"
-      ]
+        "Execution readiness",
+      ],
     },
     {
       phase: 4,
@@ -55,179 +57,152 @@ export default function HackathonTimeline() {
         "Final iteration & polish",
         "Mentor check-ins",
         "Live demos",
-        "Final pitch to jury"
+        "Final pitch to jury",
       ],
       evaluation: [
         "End-to-end solution quality",
         "Demo stability",
         "Deployability",
-        "Impact articulation"
-      ]
-    }
+        "Impact articulation",
+      ],
+    },
   ];
 
   return (
-    <section className="relative min-h-screen py-32 overflow-hidden -mt-1" id="roadmap">
-        {/* Timeline Background */}
-<div
-  className="absolute inset-0 pointer-events-none"
-  style={{
-    backgroundImage: `
-      linear-gradient(
-        to bottom,
-        /* fade-in top */
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,0.65) 18%,
-        rgba(0,0,0,0.35) 30%,
-        rgba(0,0,0,0.15) 42%,
-        rgba(0,0,0,0) 55%,
+    <section
+      id="roadmap"
+      className="relative min-h-screen py-24 sm:py-32 overflow-hidden"
+    >
+      {/* BACKGROUND */}
+      <div
+        className="
+          absolute inset-0 pointer-events-none
+          bg-cover
+          bg-[position:70%_center]
+          lg:bg-center
+        "
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              to bottom,
+              rgba(0,0,0,1) 0%,
+              rgba(0,0,0,0.65) 18%,
+              rgba(0,0,0,0.35) 30%,
+              rgba(0,0,0,0.15) 42%,
+              rgba(0,0,0,0) 55%,
+              rgba(0,0,0,0) 65%,
+              rgba(0,0,0,0.15) 75%,
+              rgba(0,0,0,0.35) 85%,
+              rgba(0,0,0,0.65) 92%,
+              rgba(0,0,0,1) 100%
+            ),
+            url('assets/Gemini_Generated_Image_xpiu6cxpiu6cxpiu.png')
+          `,
+        }}
+      />
 
-        /* clear middle */
-        rgba(0,0,0,0) 65%,
-
-        /* fade-out bottom — MATCHES counter */
-        rgba(0,0,0,0.15) 75%,
-        rgba(0,0,0,0.35) 85%,
-        rgba(0,0,0,0.65) 92%,
-        rgba(0,0,0,1) 100%
-      ),
-      url('assets/Gemini_Generated_Image_xpiu6cxpiu6cxpiu.png')
-    `,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
-/>
-
-
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
-        <div className="text-center mb-24">
-          <h2 className="text-6xl lg:text-7xl font-black text-white mb-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        {/* HEADER */}
+        <div className="text-center mb-16 sm:mb-24">
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-4">
             Journey to Impact
           </h2>
-          <p className="text-xl text-white/50">
+          <p className="text-base sm:text-xl text-white/50">
             Navigate through 4 phases from idea to implementation
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="absolute top-[200px] left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-white/20 via-white/40 to-white/20" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {phases.map((phase, index) => (
-              <div key={index} className="relative group">
-                {/* Dot */}
-                <div className="absolute left-1/2 -translate-x-1/2 top-[200px] -translate-y-1/2 z-20">
-                  <div className="relative">
-                    <div className="w-6 h-6 bg-white rounded-full shadow-[0_0_25px_rgba(255,255,255,0.7)]" />
-                    <div className="absolute inset-0 w-6 h-6 bg-white rounded-full animate-ping opacity-40" />
-                  </div>
+        {/* TIMELINE */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          {phases.map((phase, index) => (
+            <div key={index} className="relative group">
+              <div
+                className={`relative ${
+                  index % 2 === 0 ? "lg:mt-[280px]" : "lg:mb-[280px]"
+                }`}
+              >
+                <div className="flex justify-center mb-4">
+                  <span className="px-4 py-1.5 bg-white text-black text-xs sm:text-sm font-bold rounded-full">
+                    PHASE {phase.phase}
+                  </span>
                 </div>
 
-                {/* Connector */}
-                <div
-                  className={`hidden lg:block absolute left-1/2 -translate-x-1/2 w-0.5 ${
-                    index % 2 === 0
-                      ? "top-[200px] bottom-0 bg-gradient-to-b from-white/40 to-transparent"
-                      : "top-0 bottom-[200px] bg-gradient-to-b from-transparent to-white/40"
-                  }`}
-                />
+                <div className="p-5 sm:p-6 rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                    {phase.title}
+                  </h3>
+                  <p className="text-sm text-white/50">
+                    {phase.subtitle}
+                  </p>
 
-                {/* Card wrapper – z-index FIXED */}
-                <div
-                  className={`relative ${
-                    index % 2 === 0 ? "mt-[280px]" : "mb-[280px] lg:mt-0"
-                  } group-hover:z-50`}
-                >
-                  <div className="flex justify-center mb-4">
-                    <span className="px-4 py-1.5 bg-white text-black text-sm font-bold rounded-full">
-                      PHASE {phase.phase}
-                    </span>
-                  </div>
+                  {/* DETAILS
+                      - Mobile: always visible
+                      - Desktop: visible only on hover */}
+                  <div
+                    className="
+                      mt-4 space-y-4
+                      lg:max-h-0 lg:opacity-0 lg:overflow-hidden
+                      lg:group-hover:max-h-[500px]
+                      lg:group-hover:opacity-100
+                      transition-all duration-500 ease-out
+                    "
+                  >
+                    <div>
+                      <h4 className="text-xs uppercase tracking-wider text-white/60 mb-2">
+                        Deliverables
+                      </h4>
+                      <ul className="space-y-1">
+                        {phase.deliverables.map((d, i) => (
+                          <li
+                            key={i}
+                            className="text-sm text-white/70 flex gap-2"
+                          >
+                            <span className="text-white/30">▸</span>
+                            {d}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  {/* Card */}
-                  <div className="p-6 rounded-3xl border border-white/10 bg-black/60 backdrop-blur-xl transition-all duration-300">
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {phase.title}
-                    </h3>
-                    <p className="text-sm text-white/50">
-                      {phase.subtitle}
-                    </p>
-
-                    {/* Hover content */}
-                    <div className="mt-4 overflow-hidden max-h-0 opacity-0 translate-y-2 group-hover:max-h-[500px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                      <div className="mt-4">
-                        <h4 className="text-xs uppercase tracking-wider text-white/60 mb-2">
-                          Deliverables
-                        </h4>
-                        <ul className="space-y-1">
-                          {phase.deliverables.map((d, i) => (
-                            <li key={i} className="text-sm text-white/70 flex gap-2">
-                              <span className="text-white/30">▸</span>
-                              {d}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="mt-4">
-                        <h4 className="text-xs uppercase tracking-wider text-white/60 mb-2">
-                          Evaluation
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {phase.evaluation.map((e, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-white/60"
-                            >
-                              {e}
-                            </span>
-                          ))}
-                        </div>
+                    <div>
+                      <h4 className="text-xs uppercase tracking-wider text-white/60 mb-2">
+                        Evaluation
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {phase.evaluation.map((e, i) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 text-xs rounded-lg bg-white/5 border border-white/10 text-white/60"
+                          >
+                            {e}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Start */}
-          <div className="absolute top-[185px] left-[12.5%] -translate-x-full flex items-center gap-3">
-            <div className="w-4 h-4 bg-emerald-500 rounded-full" />
-            <span className="text-xs text-white/60 uppercase">Start</span>
-          </div>
-
-          {/* Finale */}
-          <div className="absolute top-[185px] right-[12.5%] translate-x-full flex items-center gap-3">
-            <span className="text-xs text-white/60 uppercase">Finale</span>
-            <div className="w-4 h-4 bg-red-500 rounded-full" />
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-24">
-          <a 
+        {/* CTA */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-16 sm:mt-24">
+          <a
             href="/register"
-            className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.5)] inline-flex items-center justify-center"
+            className="group px-8 py-4 bg-white text-black font-bold rounded-full transition-all hover:scale-105 inline-flex items-center justify-center"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              Register Now
-              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
+            Register Now
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </a>
 
           <a
             href="assets/ZYPH _details.pdf"
             download
-            className="group px-8 py-4 bg-black/60 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white/20 transition-all duration-300 hover:bg-black/80 hover:border-white/40 hover:scale-105 inline-flex items-center justify-center"
+            className="group px-8 py-4 bg-black/60 backdrop-blur-sm text-white font-bold rounded-full border border-white/20 transition-all hover:scale-105 inline-flex items-center justify-center"
           >
-            <span className="flex items-center justify-center gap-2">
-              <Download className="w-5 h-5" />
-              Download Details
-            </span>
+            <Download className="w-5 h-5 mr-2" />
+            Download Details
           </a>
         </div>
       </div>
