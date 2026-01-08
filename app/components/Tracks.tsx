@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function HackathonTracks() {
   const [visibleTracks, setVisibleTracks] = useState<number[]>([]);
-  const trackRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const tracks = [
     {
@@ -64,37 +64,38 @@ export default function HackathonTracks() {
   ];
 
   useEffect(() => {
-    const observers = trackRefs.current.map((ref, index) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              setVisibleTracks((prev) =>
-                prev.includes(index) ? prev : [...prev, index]
-              );
-            }, index * 120);
+            const index = Number(entry.target.getAttribute("data-index"));
+            setVisibleTracks((prev) =>
+              prev.includes(index) ? prev : [...prev, index]
+            );
           }
-        },
-        { threshold: 0.1 }
-      );
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      if (ref) observer.observe(ref);
-      return observer;
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
+    return () => observerRef.current?.disconnect();
   }, []);
+
+  const observe = (el: HTMLDivElement | null, index: number) => {
+    if (!el || !observerRef.current) return;
+    el.setAttribute("data-index", index.toString());
+    observerRef.current.observe(el);
+  };
 
   return (
     <section
       id="tracks"
       className="relative min-h-screen py-20 sm:py-24 overflow-hidden"
     >
-      {/* BACKGROUND (SHIFT MORE RIGHT ON MOBILE) */}
+      {/* BACKGROUND */}
       <div
         className="
-          absolute inset-0
-          bg-cover
+          absolute inset-0 bg-cover
           bg-[position:69%_top]
           sm:bg-[position:75%_top]
           lg:bg-[position:65%_top]
@@ -116,15 +117,16 @@ export default function HackathonTracks() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row-reverse gap-14 lg:gap-20 items-center min-h-[80vh]">
-          {/* RIGHT – SDG GRID */}
+
+        {/* ================= DESKTOP VIEW (UNCHANGED) ================= */}
+        <div className="hidden md:flex flex-col lg:flex-row-reverse gap-14 lg:gap-20 items-center min-h-[80vh]">
+
+          {/* RIGHT – IMAGE GRID */}
           <div className="w-full lg:w-1/2 grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-2 gap-4 sm:gap-6">
             {tracks.map((track, index) => (
               <div
                 key={index}
-                ref={(el) => {
-  trackRefs.current[index] = el;
-}}
+                ref={(el) => observe(el, index)}
                 className={`transition-all duration-700 ${
                   visibleTracks.includes(index)
                     ? "translate-y-0 opacity-100"
@@ -165,20 +167,18 @@ export default function HackathonTracks() {
                       : "-translate-x-10 opacity-0"
                   }`}
                 >
-                  <div className="group">
-                    <span className="inline-block px-3 py-1 mb-2 text-xs font-bold rounded-full bg-white/5 border border-white/20 text-white/80 group-hover:bg-white/10">
-                      {track.sdg}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
-                      {track.title}
-                    </h3>
-                    <h4 className="text-base sm:text-lg text-white/60 mb-2">
-                      {track.subtitle}
-                    </h4>
-                    <p className="text-sm text-white/50 leading-relaxed">
-                      {track.description}
-                    </p>
-                  </div>
+                  <span className="inline-block px-3 py-1 mb-2 text-xs font-bold rounded-full bg-white/5 border border-white/20 text-white/80">
+                    {track.sdg}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                    {track.title}
+                  </h3>
+                  <h4 className="text-base sm:text-lg text-white/60 mb-2">
+                    {track.subtitle}
+                  </h4>
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    {track.description}
+                  </p>
 
                   {index < tracks.length - 1 && (
                     <div className="mt-6 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
@@ -188,6 +188,47 @@ export default function HackathonTracks() {
             </div>
           </div>
         </div>
+
+        {/* ================= MOBILE / TABLET ================= */}
+        <div className="md:hidden space-y-6">
+          <h2 className="text-4xl font-black text-white text-center">
+            Tracks
+          </h2>
+
+          {tracks.map((track, index) => (
+            <div
+              key={index}
+              ref={(el) => observe(el, index)}
+              className={`flex gap-4 items-start rounded-2xl bg-black/80 backdrop-blur-md border border-white/20 p-4 transition-all duration-700 ${
+                visibleTracks.includes(index)
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-6 opacity-0"
+              }`}
+            >
+              <img
+                src={track.image}
+                alt={track.sdg}
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border border-white/30 shrink-0"
+              />
+
+              <div>
+                <span className="inline-block mb-1 text-xs font-bold text-white bg-white/20 px-2 py-0.5 rounded-full">
+                  {track.sdg}
+                </span>
+                <h3 className="text-sm sm:text-base font-bold text-white">
+                  {track.title}
+                </h3>
+                <p className="text-sm text-white/90">
+                  {track.subtitle}
+                </p>
+                <p className="text-xs text-white/80 leading-relaxed">
+                  {track.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

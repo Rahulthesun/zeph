@@ -11,17 +11,16 @@ import HackathonCountdown from "./components/counter";
 import LocationDetails from "./components/location";
 import Footer from "./components/footer";
 
-const Galaxy = dynamic(() => import("./components/galaxy"), {
-  ssr: false,
-});
+const Galaxy = dynamic(() => import("./components/galaxy"), { ssr: false });
 
 function EnvironmentTransition({ image }: { image: string }) {
   return (
     <div
       className="
-        relative w-full bg-cover bg-top z-30 pointer-events-none
-        -mt-[25vh] h-[50vh]
-        sm:-mt-[25vh] sm:h-[50vh]
+        relative w-full pointer-events-none z-30
+        h-[18vh] sm:h-[26vh] md:h-[34vh] lg:h-[50vh]
+        -mt-[9vh] sm:-mt-[13vh] md:-mt-[17vh]
+        bg-cover bg-center bg-no-repeat
       "
       style={{ backgroundImage: `url(${image})` }}
     />
@@ -30,56 +29,63 @@ function EnvironmentTransition({ image }: { image: string }) {
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
+  const [vh, setVh] = useState(0);
 
   useEffect(() => {
-    setWindowHeight(window.innerHeight);
+    const update = () => setVh(window.innerHeight);
+    update();
 
     const onScroll = () => setScrollY(window.scrollY);
-    const onResize = () => setWindowHeight(window.innerHeight);
-
     window.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", update);
 
     const link = document.createElement("link");
     link.href =
-      "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&display=swap";
+      "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap";
     link.rel = "stylesheet";
     document.head.appendChild(link);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", update);
     };
   }, []);
 
-  // 🌕 Moon parallax — DESKTOP SAME, MOBILE CLAMPED
-  const moonTranslateY =
-    windowHeight > 0
-      ? window.innerWidth < 640
-        ? Math.max(-20, 20 - (scrollY / windowHeight) * 40)
-        : Math.max(-50, 50 - (scrollY / windowHeight) * 100)
-      : 50;
+  const moonTranslate =
+    vh > 0
+      ? Math.max(
+          -20,
+          20 - (scrollY / vh) * (window.innerWidth < 1024 ? 25 : 90)
+        )
+      : 0;
 
   const titleOpacity =
-    windowHeight > 0
-      ? Math.max(0, Math.min(1, 1 - scrollY / (windowHeight * 0.5)))
-      : 1;
-
-  const titleTranslateY = scrollY * 0.3;
+    vh > 0 ? Math.max(0, 1 - scrollY / (vh * 0.45)) : 1;
 
   return (
     <main className="w-full bg-black text-white overflow-x-hidden">
-
       {/* ===================== SPACE ===================== */}
-      <section className="relative h-screen overflow-hidden bg-black">
-
+      <section
+        className="
+          relative overflow-hidden bg-black
+          h-[78vh] sm:h-[84vh] md:h-[90vh]
+          lg:h-screen
+        "
+      >
         {/* Moon */}
         <div
-          className="absolute inset-0 z-10 bg-cover bg-bottom transition-transform duration-100 ease-linear"
+          className="
+            absolute inset-0 z-0
+            bg-no-repeat bg-center
+            bg-[length:205%]
+            sm:bg-[length:225%]
+            md:bg-[length:150%]
+            lg:bg-cover
+            transition-transform duration-100 ease-linear
+          "
           style={{
             backgroundImage: "url('/assets/moon.png')",
-            transform: `translateY(${moonTranslateY}%)`,
+            transform: `translateY(${moonTranslate}%)`,
           }}
         />
 
@@ -88,54 +94,44 @@ export default function Home() {
         {/* HERO */}
         <div
           className="
-            relative z-20 flex h-full flex-col items-center justify-center
-            -mt-12 sm:-mt-32
+            relative z-10 flex h-full flex-col
+            items-center justify-start
+            pt-20 sm:pt-24 md:pt-28
+            lg:pt-0 lg:justify-center
+            px-4 text-center
           "
-          style={{
-            opacity: titleOpacity,
-            transform: `translateY(${titleTranslateY}px)`,
-          }}
+          style={{ opacity: titleOpacity }}
         >
-          <div className="relative">
+          <div className="relative select-none">
+            <h1
+  className="
+    absolute inset-x-0 top-8 sm:top-12 md:top-16
+    font-black blur-2xl opacity-40
+    text-[clamp(3.5rem,14vw,12rem)]
+  "
+  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+  aria-hidden
+>
+  ZYPH ’26
+</h1>
 
-            {/* Glow */}
+
             <h1
               className="
-                absolute inset-0 font-black blur-3xl opacity-40
-                text-[5rem] sm:text-[12rem]
-              "
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              aria-hidden
-            >
-              ZYPH ’26
-            </h1>
-
-            {/* Main */}
-            <h1
-              className="
-                relative font-black bg-clip-text text-transparent
+                relative font-black
+                text-[clamp(3.5rem,14vw,12rem)]
+                bg-clip-text text-transparent
                 bg-gradient-to-b from-white via-white to-white/80
-                text-[5rem] sm:text-[12rem]
               "
               style={{
                 fontFamily: "'Bebas Neue', sans-serif",
                 filter:
-                  "drop-shadow(0 4px 8px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(255,255,255,0.3))",
+                  "drop-shadow(0 4px 10px rgba(0,0,0,0.85)) drop-shadow(0 0 18px rgba(255,255,255,0.3))",
               }}
             >
               ZYPH ’26
             </h1>
           </div>
-
-          {/* Scroll indicator — MOBILE HIDDEN ONLY */}
-          {/* <div className="absolute bottom-12 hidden sm:flex flex-col items-center gap-3">
-            <span className="text-xs tracking-widest text-white/40">
-              SCROLL
-            </span>
-            <div className="h-12 w-6 rounded-full border border-white/20 p-1">
-              <div className="h-2 w-2 mx-auto rounded-full bg-white/40 animate-bounce" />
-            </div>
-          </div> */}
         </div>
       </section>
 
@@ -155,7 +151,6 @@ export default function Home() {
         <LocationDetails />
         <Footer />
       </section>
-
     </main>
   );
 }
